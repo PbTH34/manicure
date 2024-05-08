@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
         textTheme: const TextTheme(
 
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Home Page'),
@@ -51,65 +50,108 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
 
       body:Stack(
-          fit: StackFit.expand,
-          children: [
-        Container(
-        decoration: const BoxDecoration(
-        image: DecorationImage(
-        image: AssetImage('assets/images/background.jpg'),
-        fit: BoxFit.cover
-        )
-        ),
-        ),
+        fit: StackFit.expand,
+        children: [
+          Container( //картинка
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+              image: AssetImage('assets/images/background.jpg'),
+              fit: BoxFit.cover
+              )
+            ),
+          ),
 
-        Center(
-
-          child: ClipRect(
-
-            child: BackdropFilter(
-
-            filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
-
-                child:Container(
-                    width: 307,
+          Center(
+  
+            child: ClipRect( //чтобы картинка размывалась тока позади контейнера
+  
+              child: BackdropFilter(
+  
+              filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
+  
+                  child:Container(
+                    width: 307, // внешний вид контейнера по центру
                     height: 310,
-                    color: const Color.fromARGB(100, 252, 131, 210).withOpacity(0.2),
-                    padding:EdgeInsets.all(30.0),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(100, 252, 131, 210).withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding:EdgeInsets.fromLTRB(30,0,30,0),
                     alignment: Alignment.center,
-
-                  child:Column(
-
+                    child:Column(
+                      mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         TextField( // поле логина
-                        decoration: InputDecoration(
-                          labelText: 'Введите номер телефона',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0),
+                          cursorColor: Colors.white,
+
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor:Colors.black,
+                            contentPadding: EdgeInsets.symmetric(vertical: 7.0, horizontal:17.0 ),
+                            labelText:  'Введите номер телефона',
+                            labelStyle: const TextStyle(
+                              color: Color.fromARGB(70, 255, 255, 255),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
                           ),
                         ),
-                      ),
-                        SizedBox(height: 24.0),
-                        TextField( // поле пароля
+                        const SizedBox(height: 20.0),
+                        TextField(// поле пароля
                           obscureText: true, // спрятал пароль
                           decoration: InputDecoration(
+                            filled: true,
+                            fillColor:Colors.black,
+                            contentPadding: EdgeInsets.symmetric(vertical: 7.0, horizontal:17.0 ),
                             labelText: 'Введите пароль',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30.0)
+                            labelStyle: const TextStyle(
+                              color: Color.fromARGB(70, 255, 255, 255),
                             ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0)
                             ),
                           ),
-                        SizedBox(height: 24.0),
+                        ),
+                        const SizedBox(height: 0.0),
+                        TextButton(
+                          style: ButtonStyle(
+                            minimumSize: MaterialStateProperty.all(Size(0,0))),
+                          onPressed: logIn,
+                          child:const Text("Забыли пароль?", style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontFamily: 'Lato',
+                          )
+                          ),
+                        ),
+
+                        TextButton(
+                          style: ButtonStyle(
+
+                            minimumSize: MaterialStateProperty.all(Size(0,0))),
+                          onPressed: logIn,
+                          child:const Text("Зарегестрироваться",style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontFamily: 'Lato',
+                          )
+                            ,)
+                        ),
                         OutlinedButton( //кнопочка)
+
                         onPressed: logIn,
                         style: ButtonStyle(
+                          minimumSize: MaterialStateProperty.all(Size(276,41)),
                           side: MaterialStateProperty.all<BorderSide>(BorderSide(color: Color.fromARGB(100, 252, 131, 210))),
+
                         ),
                           child: const Text("Войти", style: TextStyle(
                             color: Colors.white,
                             fontSize: 25,
                             fontFamily: 'Lato',
-                      ),
+                    ),
                  ),
                 ),
               ]
