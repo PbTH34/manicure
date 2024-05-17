@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
 
              Center(
-               child:Padding(padding:  EdgeInsets.fromLTRB(30,0,30,0),
+               child:Padding(padding:  EdgeInsets.fromLTRB(30,0,30,360),
                   child: ClipPath(
 
                    child:  Text('Log In',
