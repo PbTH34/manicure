@@ -77,8 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
 
              Center(
-               child:Padding(padding:  EdgeInsets.fromLTRB(30,0,30,370),
-                   child:  Text('Sign Up',
+               child:Padding(padding:  EdgeInsets.fromLTRB(30,0,30,0),
+                  child: ClipPath(
+
+                   child:  Text('Log In',
 
                        textAlign: TextAlign.center,
                        style: TextStyle(
@@ -88,29 +90,28 @@ class _MyHomePageState extends State<MyHomePage> {
                          fontFamily: 'Lato',
                          shadows: [
                            Shadow(
-                             color: Colors.pinkAccent,
+                             color: Colors.transparent,
                              offset: Offset(-6, 0),
                              blurRadius: 0,
-
-
                            ),
                            Shadow(
-                               color: Color.fromARGB(250, 24, 24, 24),
-                               offset: Offset(-5, 0),
-                               blurRadius: 0,
-
+                               color: Colors.white,
+                               offset: Offset(0, 0),
+                               blurRadius: 16,
                            )
 
                          ]
                        )
                     )
+                  )
                  )
                )
             ]
            ),
 
           Center(
-              child : ClipRRect( //чтобы картинка размывалась тока позади контейнера
+
+               child: ClipRRect( //чтобы картинка размывалась тока позади контейнера
                 borderRadius: BorderRadius.circular(20.0),
 
                 child: BackdropFilter(
@@ -120,17 +121,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     child:Container(
                       width: 307, // внешний вид контейнера по центру
                       height: 310,
+                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(100, 252, 131, 210).withOpacity(0.15),
+                        color: const Color.fromARGB(250, 252, 131, 210).withOpacity(0.15),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      padding:const EdgeInsets.fromLTRB(30,0,30,0),
-                      alignment: Alignment.center,
+                      padding:const EdgeInsets.fromLTRB(30,0,30,5),
+
                       child:Column(
                         mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
+                        children: [
+                          const SizedBox(height: 20.0),
                           TextField( // поле логина
+
                             cursorColor: Colors.white,
                             style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
@@ -139,14 +142,14 @@ class _MyHomePageState extends State<MyHomePage> {
                               contentPadding: const EdgeInsets.symmetric(vertical: 7.0, horizontal:17.0 ),
                               labelText:  'Введите номер телефона',
                               labelStyle: const TextStyle(
-                                color: Color.fromARGB(70, 255, 255, 255),
+                                color: Color.fromARGB(125, 255, 255, 255),
                               ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
                             ),
                           ),
-                          const SizedBox(height: 20.0),
+                          const SizedBox(height: 24.0),
                           TextField(// поле пароля
                             obscureText: true, // спрятал пароль
                             style: const TextStyle(color: Colors.white),
@@ -157,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               contentPadding: const EdgeInsets.symmetric(vertical: 7.0, horizontal:17.0 ),
                               labelText: 'Введите пароль',
                               labelStyle: const TextStyle(
-                                color: Color.fromARGB(70, 255, 255, 255),
+                                color: Color.fromARGB(125, 255, 255, 255),
                               ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30.0)
@@ -165,9 +168,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           const SizedBox(height: 0.0),
-                          TextButton(
+                          OutlinedButton(
                             style: ButtonStyle(
-                              minimumSize: MaterialStateProperty.all(const Size(0,0))),
+                              padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.fromLTRB(0, 0, 0, 0)),
+                            minimumSize: MaterialStateProperty.all(const Size(0,0)),
+                            maximumSize: MaterialStateProperty.all(const Size(160,20)) ,
+                            side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: Colors.transparent)),
+                            ),
+
                             onPressed: forgotPassword,
                             child:const Text("Забыли пароль?", style: TextStyle(
                               color: Colors.white,
@@ -176,11 +184,15 @@ class _MyHomePageState extends State<MyHomePage> {
                             )
                             ),
                           ),
+                          const SizedBox(height: 0.0),
 
-                          TextButton(
+                          OutlinedButton(
                             style: ButtonStyle(
-
-                              minimumSize: MaterialStateProperty.all(const Size(0,0))),
+                              padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.fromLTRB(0, 0, 0, 0)),
+                              side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: Colors.transparent)),
+                              minimumSize: MaterialStateProperty.all(const Size(0,0)),
+                              maximumSize: MaterialStateProperty.all(const Size(180,20))
+                            ),
                             onPressed: signUp,
                             child:const Text("Зарегестрироваться",style: TextStyle(
                               color: Colors.white,
@@ -189,10 +201,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             )
                               ,)
                           ),
-                          OutlinedButton( //кнопочка)
+                          const SizedBox(height: 0.0),
+                          TextButton( //кнопочка)
 
                           onPressed: logIn,
                           style: ButtonStyle(
+
                             minimumSize: MaterialStateProperty.all(const Size(276,41)),
                             side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: Color.fromARGB(100, 252, 131, 210))),
 
@@ -210,7 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         ),
           )
-            ]
+          ]
               )
         );
 
