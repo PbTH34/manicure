@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:manicure/pages/RegPage.dart';
-import 'package:manicure/pages/LogInPage.dart';
-import 'package:manicure/pages/ForgotPasswordPage.dart';
+import 'package:manicure/pages/LoginPages/RegPage.dart';
+import 'package:manicure/pages/LoginPages/LogInPage.dart';
+import 'package:manicure/pages/LoginPages/ForgotPasswordPage.dart';
+import 'package:manicure/pages/HomePages/HomePage.dart';
 void main() {
   runApp(const MyApp());
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title:'Flutter Demo',
+      title:'manicure',
       theme: ThemeData(
 
         textTheme: const TextTheme(
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           Navigator.pushNamed(context, '/Forgot');
           },
           logInPressed:(){
-
+            Navigator.pushNamed(context, '/Home');
           }
         ),
         '/Reg': (context) => RegPage(
@@ -50,6 +51,23 @@ class MyApp extends StatelessWidget {
             forgotPressed:(){
 
             },
+        ),
+        '/Home': (context) => HomePage(
+            manicureMasterPressed:(){
+
+            } ,
+            notionsPressed:(){
+
+            } ,
+            calendarPressed :(){
+
+            } ,
+            chatPressed:(){
+
+            } ,
+            configPressed:(){
+
+            } ,
         ),
 
       },
