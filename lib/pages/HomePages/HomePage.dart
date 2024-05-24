@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
 
   HomePage({
     super.key,
-    required this.manicureMasterPressed,
+    required this.manicureMasterPressed,                                                                                                                                                                                                                                                                                                                                                                                                        
     required this.notionsPressed,
     required this.calendarPressed,
     required this.chatPressed,
@@ -32,24 +32,51 @@ class HomePage extends StatelessWidget {
       body: Stack(
 
         children: [
-          Container(
-
+          Container(  //белый задник
             color: Colors.white,
           ),
-            Positioned(
+          Positioned( //черный задник
               top: 0,
               left: 0,
-              child:
+              child: Expanded(child: //блядская залупа кнопка убегает
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.black,
-                  borderRadius: BorderRadius.circular(30.0),
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
                 ),
                 height: 300,
-                width: 1000,
+
+                child:Padding(
+                  padding: const EdgeInsets.only(top: 50, left: 40),
+                  child:  Row( // row с текстом приветсвия и кнопкой
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Добро пожаловать, Дмитрий!',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: 'Be Vietnam Pro',
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+
+                      ),
+                      ElevatedButton( //пидараска убегающая
+                          style: ButtonStyle(
+                          elevation: MaterialStateProperty.all(0),
+                          minimumSize: MaterialStateProperty.all(const Size(60,60)),
+                          backgroundColor:MaterialStateProperty.all(const Color.fromARGB(250, 255, 255, 255).withOpacity(0.2))   ,
+                          ),
+                          onPressed: notionsPressed,
+                          child: const Icon(Icons.notifications_none,color: Colors.white,))
+                    ],
+                  ),
               ),
             ),
-          Center(
+          ),),
+          Center( // анкеты маникюрщиц
             child: Stack(
               children: [
                 Container(
@@ -81,31 +108,44 @@ class HomePage extends StatelessWidget {
                             right: BorderSide(color: Color.fromARGB(250, 252, 131, 210)),
                             left: BorderSide(color: Color.fromARGB(250, 252, 131, 210)),
                             top: BorderSide(color: Color.fromARGB(250, 252, 131, 210))),
-                          borderRadius: BorderRadius.circular(19.0),
-                          image: const DecorationImage(
+                        borderRadius: BorderRadius.circular(19.0),
+                        image: const DecorationImage(
                             image: AssetImage('assets/images/master.jpg'),
-                              fit: BoxFit.cover
+                            fit: BoxFit.cover
                           )
                         ),
                       ),
                       const Column(
                         children: [
-                          Flex(
-                              direction: Axis.horizontal,
+                          Row(
                               children: [
-                                Text('Мастер Алина'),]),
-                          Flex(
-                              direction: Axis.horizontal,
+                                SizedBox(width: 24,height: 35,),
+                                Text('Мастер Алина',
+                                style: TextStyle(
+                                  color: Color.fromARGB(250, 0, 0, 0),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  fontFamily: 'Be Vietnam pro',
+                                ),
+                                ),]),
+                          Row(
                               children: [
-                                Icon(Icons.location_on_outlined,),
-                                Text('улица Красный Путь')
+                                SizedBox(width: 22),
+                                Icon(Icons.location_on_outlined, color: Color.fromARGB(125, 0, 0, 0),),
+                                Text('улица Красный Путь',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(125, 0, 0, 0),
+                                    fontFamily:'Be Vietnam pro',
+                                    fontSize: 15,
+                                    ),
+                                )
                               ],)
                     ]
                       )
                     ],
                   )
                 ),
-                Positioned(
+                Positioned( // кнопка скама на бабки
                     right: 0,
                     bottom: 0,
                     child: ElevatedButton(
@@ -117,7 +157,8 @@ class HomePage extends StatelessWidget {
                         ),
                         onPressed: manicureMasterPressed,
                         child: const Icon(Icons.arrow_forward_sharp,
-                        size: 40,
+                          size: 40,
+                          color: Color.fromARGB(250, 252, 131, 210),
                         ))
                 )
               ],
@@ -127,7 +168,7 @@ class HomePage extends StatelessWidget {
         ],
 
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar( //нижняя навигация
         type: BottomNavigationBarType.fixed,
         iconSize: 35,
         unselectedIconTheme:const IconThemeData(

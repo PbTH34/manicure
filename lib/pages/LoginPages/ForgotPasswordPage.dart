@@ -24,6 +24,7 @@ class ForgotPasswdPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+        resizeToAvoidBottomInset:false,
         body:Stack(
             fit: StackFit.expand,
             children: [
@@ -59,7 +60,7 @@ class ForgotPasswdPage extends StatelessWidget {
                                             const Shadow(
                                               color: Colors.white,
                                               offset: Offset(0, 0),
-                                              blurRadius: 16,
+                                              blurRadius: 10,
                                             ),
                                             Shadow(
                                               color: Colors.transparent.withOpacity(0.0),

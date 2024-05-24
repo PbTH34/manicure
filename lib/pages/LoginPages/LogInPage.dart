@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
+
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 
 class LogInPage extends StatelessWidget {
   final VoidCallback regPressed;
@@ -17,10 +21,12 @@ class LogInPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+        resizeToAvoidBottomInset:false,
         body:Stack(
             fit: StackFit.expand,
             children: [
               Container( //картинка
+
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('assets/images/background.jpg'),
@@ -41,7 +47,6 @@ class LogInPage extends StatelessWidget {
                             const ClipPath(
 
                                 child:  Text('LogIn',
-
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Color.fromARGB(250, 252, 131, 210),
@@ -57,7 +62,7 @@ class LogInPage extends StatelessWidget {
                                           Shadow(
                                             color: Colors.white,
                                             offset: Offset(0, 0),
-                                            blurRadius: 16,
+                                            blurRadius: 10,
                                           )
 
                                         ]
