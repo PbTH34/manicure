@@ -35,47 +35,53 @@ class HomePage extends StatelessWidget {
           Container(  //белый задник
             color: Colors.white,
           ),
-          Positioned( //черный задник
+          Expanded(
+              child: Positioned( //черный задник
               top: 0,
               left: 0,
-              child: Expanded(child: //блядская залупа кнопка убегает
-              Container(
+                child: Container(  //блядская залупа кнопка убегает
                 decoration: const BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
                 ),
                 height: 300,
+                width: MediaQuery.of(context).size.width,
 
                 child:Padding(
                   padding: const EdgeInsets.only(top: 50, left: 40),
                   child:  Row( // row с текстом приветсвия и кнопкой
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Добро пожаловать, Дмитрий!',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontFamily: 'Be Vietnam Pro',
-                          fontSize: 20,
-                          color: Colors.white,
+                      const Expanded (
+                        child: Text('Добро пожаловать!',
+                          softWrap: true,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontFamily: 'Be Vietnam Pro',
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
                         ),
-
                       ),
                       ElevatedButton( //пидараска убегающая
-                          style: ButtonStyle(
-                          elevation: MaterialStateProperty.all(0),
-                          minimumSize: MaterialStateProperty.all(const Size(60,60)),
-                          backgroundColor:MaterialStateProperty.all(const Color.fromARGB(250, 255, 255, 255).withOpacity(0.2))   ,
+                          style: ElevatedButton.styleFrom(
+                            shape: const CircleBorder(),
+                          elevation: 0,
+                          minimumSize: const Size(70,70),
+                          backgroundColor: const Color.fromARGB(250, 255, 255, 255).withOpacity(0.2)   ,
                           ),
                           onPressed: notionsPressed,
-                          child: const Icon(Icons.notifications_none,color: Colors.white,))
+                          child: const Icon(Icons.notifications_outlined,color: Colors.white, size: 48,))
+
                     ],
                   ),
               ),
             ),
-          ),),
+          ),
+          ),
           Center( // анкеты маникюрщиц
             child: Stack(
               children: [
@@ -86,7 +92,7 @@ class HomePage extends StatelessWidget {
                         color:Colors.black ,
                         blurRadius: 20,
                         spreadRadius: 0,
-                        offset: Offset(0, 4),
+                        offset: Offset(0,4),
                       )
                     ],
                     borderRadius:BorderRadius.circular(20.0),
@@ -149,11 +155,12 @@ class HomePage extends StatelessWidget {
                     right: 0,
                     bottom: 0,
                     child: ElevatedButton(
-                        style: ButtonStyle(
-                          elevation: MaterialStateProperty.all(0),
-                          backgroundColor: MaterialStateProperty.all(const Color.fromARGB(250, 252, 131, 210).withOpacity(0.0)),
-                          minimumSize: MaterialStateProperty.all(const Size(80,80)),
-                          side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: Colors.transparent)),
+                        style: ElevatedButton.styleFrom(
+                          shape: const CircleBorder(),
+                          elevation: 0,
+                          backgroundColor: const Color.fromARGB(250, 252, 131, 210).withOpacity(0.0),
+                          minimumSize: const Size(80,80),
+                          side: const BorderSide(color: Colors.transparent),
                         ),
                         onPressed: manicureMasterPressed,
                         child: const Icon(Icons.arrow_forward_sharp,

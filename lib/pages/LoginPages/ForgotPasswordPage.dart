@@ -95,11 +95,12 @@ class ForgotPasswdPage extends StatelessWidget {
 
                                         ElevatedButton(onPressed: backPressed,
 
-                                          style: ButtonStyle(
-                                            elevation: MaterialStateProperty.all(0),
-                                            backgroundColor: MaterialStateProperty.all(const Color.fromARGB(250, 252, 131, 210).withOpacity(0.0)),
-                                            minimumSize: MaterialStateProperty.all(const Size(50,60)),
-                                            side: MaterialStateProperty.all<BorderSide>(const BorderSide(color: Colors.transparent)),
+                                          style: ElevatedButton.styleFrom(
+                                            shape: const CircleBorder(),
+                                            elevation: 0,
+                                            backgroundColor: const Color.fromARGB(250, 252, 131, 210).withOpacity(0.0),
+                                            minimumSize: const Size(50,60),
+                                            side: const BorderSide(color: Colors.transparent),
                                           ),
                                           child: const Icon(Icons.arrow_back_rounded,
                                             size: 30,
