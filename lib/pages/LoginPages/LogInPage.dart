@@ -44,32 +44,36 @@ class LogInPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
 
-                            const ClipPath(
+                             Container(
+                                width: 270,
 
-                                child:  Text('LogIn',
+                                child:  Stack(
+                                    alignment: Alignment.center,
+                                children: [
+                                  const Text('LogIn',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Color.fromARGB(250, 252, 131, 210),
                                         fontSize: 100,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Lato',
-                                        shadows: [
-                                          Shadow(
-                                            color: Colors.transparent,
-                                            offset: Offset(-6, 0),
-                                            blurRadius: 0,
-                                          ),
-                                          Shadow(
-                                            color: Colors.white,
-                                            offset: Offset(0, 0),
-                                            blurRadius: 10,
-                                          )
-
-                                        ]
                                     )
-                                )
+                                ),
+                                  Positioned(
+                                   right: 20,
+                                   top: 12,
+                                    child: Text('LogIn',
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                                       foreground: Paint()
+                                        ..style = PaintingStyle.stroke
+                                        ..color = const Color.fromARGB(250, 252, 131, 210)
+                                        ..strokeWidth = 1,
+                                        fontSize: 102,
+                                  )))
+                      ]
                             ),
-
+                             ),
 
                             ClipRRect( //чтобы картинка размывалась тока позади контейнера
                               borderRadius: BorderRadius.circular(20.0),

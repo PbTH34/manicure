@@ -46,30 +46,36 @@ class ForgotPasswdPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
 
-                             ClipPath(
+                            Container(
+                              width: 270,
 
-                                child:  Text('Forgot Password',
-
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: const Color.fromARGB(250, 252, 131, 210),
-                                        fontSize: 50,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Lato',
-                                        shadows: [
-                                            const Shadow(
-                                              color: Colors.white,
-                                              offset: Offset(0, 0),
-                                              blurRadius: 10,
-                                            ),
-                                            Shadow(
-                                              color: Colors.transparent.withOpacity(0.0),
-                                              offset: const Offset(0, 0),
-                                              blurRadius: 0,
-                                            ),
-                                        ]
-                                    )
-                                )
+                              child:  Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    const Text('Forgot Password',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color.fromARGB(250, 252, 131, 210),
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Lato',
+                                        )
+                                    ),
+                                    Positioned(
+                                        right: 13,
+                                        top: 5,
+                                        child: Text('Forgot Password',
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                                              foreground: Paint()
+                                                ..style = PaintingStyle.stroke
+                                                ..color = const Color.fromARGB(250, 252, 131, 210)
+                                                ..strokeWidth = 1,
+                                              fontSize: 33,
+                                              fontFamily: 'Lato'
+                                            )))
+                                  ]
+                              ),
                             ),
 
 

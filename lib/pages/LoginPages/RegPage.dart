@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
@@ -36,31 +37,33 @@ class RegPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
 
-                            const ClipPath(
-
-                                child:  Text('SignUp',
-
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Color.fromARGB(250, 252, 131, 210),
-                                        fontSize: 100,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Lato',
-                                        shadows: [
-                                          Shadow(
-                                            color: Colors.transparent,
-                                            offset: Offset(-6, 0),
-                                            blurRadius: 0,
-                                          ),
-                                          Shadow(
-                                            color: Colors.white,
-                                            offset: Offset(0, 0),
-                                            blurRadius: 10,
-                                          )
-
-                                        ]
-                                    )
-                                )
+                            Container(
+                              width: 350,
+                              child:  Stack(
+                                alignment: Alignment.center,
+                                  children: [
+                                    const Text('SignUp',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color.fromARGB(250, 252, 131, 210),
+                                          fontSize: 100,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Lato',
+                                        )
+                                    ),
+                                    Positioned(
+                                        right: 22,
+                                        child: Text('SignUp',
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                                              foreground: Paint()
+                                                ..style = PaintingStyle.stroke
+                                                ..color = const Color.fromARGB(250, 252, 131, 210)
+                                                ..strokeWidth = 1,
+                                              fontSize: 102,
+                                            )))
+                                  ]
+                              ),
                             ),
 
 

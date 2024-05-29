@@ -29,8 +29,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      resizeToAvoidBottomInset:false,
       body: Stack(
-
         children: [
           Container(  //белый задник
             color: Colors.white,
@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Expanded (
-                        child: Text('Добро пожаловать!',
+                        child: Text('Добро пожаловать, Дмитрий!',
                           softWrap: true,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -109,11 +109,7 @@ class HomePage extends StatelessWidget {
                         height: 401,
                         width: 295,
                         decoration:  BoxDecoration(
-                          border: const Border(
-                            bottom: BorderSide(color: Color.fromARGB(250, 252, 131, 210)),
-                            right: BorderSide(color: Color.fromARGB(250, 252, 131, 210)),
-                            left: BorderSide(color: Color.fromARGB(250, 252, 131, 210)),
-                            top: BorderSide(color: Color.fromARGB(250, 252, 131, 210))),
+                          border: Border.all(color: const Color.fromARGB(250, 252, 131, 210)),
                         borderRadius: BorderRadius.circular(19.0),
                         image: const DecorationImage(
                             image: AssetImage('assets/images/master.jpg'),
@@ -155,6 +151,7 @@ class HomePage extends StatelessWidget {
                     right: 0,
                     bottom: 0,
                     child: ElevatedButton(
+
                         style: ElevatedButton.styleFrom(
                           shape: const CircleBorder(),
                           elevation: 0,
