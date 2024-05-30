@@ -147,6 +147,19 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_tindercard_plus:
+    dependency: "direct main"
+    description:
+      name: flutter_tindercard_plus
+      sha256: "43bee350fa4d49daf7e3c4522dbf87d538a0afc5e6b80237a2efdd2bdc8ad312"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   heif_converter:
     dependency: "direct main"
     description:

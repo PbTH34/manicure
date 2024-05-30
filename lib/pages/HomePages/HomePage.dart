@@ -1,25 +1,55 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'dart:ui';
-class HomePage extends StatelessWidget {
+import 'package:flutter_tindercard_plus/flutter_tindercard_plus.dart';
+class HomePage extends StatefulWidget {
   final VoidCallback manicureMasterPressed;
   final VoidCallback notionsPressed;
   final VoidCallback calendarPressed;
   final VoidCallback chatPressed;
   final VoidCallback configPressed;
-
-  HomePage({
+  const HomePage({
     super.key,
-    required this.manicureMasterPressed,                                                                                                                                                                                                                                                                                                                                                                                                        
+    required this.manicureMasterPressed,
     required this.notionsPressed,
     required this.calendarPressed,
     required this.chatPressed,
     required this.configPressed,
-  });
 
+  });
+  @override
+  HomePageState createState() => HomePageState();
+}
+  class HomePageState extends State<HomePage>
+      with TickerProviderStateMixin {
+  double _opacity = 0.0;
+  double _topPosition = 40.0;
+  List<Map<String,String>> data =[
+    {"name": "Алина", "location": "улица Красный Путь", "image": "assets/images/master.jpg"},
+    {"name": "Алина", "location": "улица Красный Путь", "image": "assets/images/master.jpg"},
+    {"name": "Алина", "location": "улица Красный Путь", "image": "assets/images/master.jpg"}, //сделать чтобы данные брались из firebase
+  ];
+  @override
+  void initState(){
+    super.initState();
+    _startAnimation();
+  }
+
+  void _startAnimation(){
+    Timer(const Duration(seconds: 1), (){
+      setState(() {
+        _opacity = 1.0;
+        _topPosition = 0;
+      });
+    });
+    Timer(const Duration(seconds: 5), (){
+      setState(() {
+        _opacity = 0.0;
+        _topPosition = 0;
+      });
+    });
+  }
 
   final GlobalKey tooltipKey = GlobalKey();
-
   void toggleTooltip() {
     final dynamic tooltip = tooltipKey.currentState;
     tooltip.ensureTooltipVisible();
@@ -27,7 +57,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    final CardController controller = CardController();
     return Scaffold(
       resizeToAvoidBottomInset:false,
       body: Stack(
@@ -37,8 +67,8 @@ class HomePage extends StatelessWidget {
           ),
           Expanded(
               child: Positioned( //черный задник
-              top: 0,
-              left: 0,
+                top: 0,
+                left: 0,
                 child: Container(  //блядская залупа кнопка убегает
                 decoration: const BoxDecoration(
                   color: Colors.black,
@@ -51,21 +81,34 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 50, left: 40),
                   child:  Row( // row с текстом приветсвия и кнопкой
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Expanded (
-                        child: Text('Добро пожаловать, Дмитрий!',
-                          softWrap: true,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontFamily: 'Be Vietnam Pro',
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
+                       Expanded (
+                         child: Stack(
+                            children:[
+                              AnimatedPositioned(
+                                duration: const Duration(seconds: 1),
+                                top: _topPosition,
+                                left: 0,
+                                right: 10,
+                                child: AnimatedOpacity(
+                                  opacity: _opacity,
+                                  duration: const Duration(seconds: 1),
+                                  child: const Text('Добро пожаловать, Дмитрий!',
+                                    softWrap: true,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontFamily: 'Be Vietnam Pro',
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              )
+                          ]),
                         ),
-                      ),
                       ElevatedButton( //пидараска убегающая
                           style: ElevatedButton.styleFrom(
                             shape: const CircleBorder(),
@@ -73,7 +116,7 @@ class HomePage extends StatelessWidget {
                           minimumSize: const Size(70,70),
                           backgroundColor: const Color.fromARGB(250, 255, 255, 255).withOpacity(0.2)   ,
                           ),
-                          onPressed: notionsPressed,
+                          onPressed: widget.notionsPressed,
                           child: const Icon(Icons.notifications_outlined,color: Colors.white, size: 48,))
 
                     ],
@@ -82,10 +125,22 @@ class HomePage extends StatelessWidget {
             ),
           ),
           ),
-          Center( // анкеты маникюрщиц
-            child: Stack(
-              children: [
-                Container(
+           Center(
+           child:  TinderSwapCard(
+              swipeUp: false,
+              swipeDown: false,
+              totalNum: data.length,
+              stackNum: 3,
+              swipeEdge: 4.0,
+              maxWidth: 299,
+              maxHeight: 495,
+              minWidth: 293,
+              minHeight: 488,
+              cardBuilder: (context, index) => Card(
+               // анкеты маникюрщиц
+                child: Stack(
+                children: [
+                  Container(
                   decoration: BoxDecoration(
                     boxShadow: const [
                       BoxShadow(
@@ -101,11 +156,11 @@ class HomePage extends StatelessWidget {
                   ),
                   height:488 ,
                   width: 293,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                        Container(
                         height: 401,
                         width: 295,
                         decoration:  BoxDecoration(
@@ -117,61 +172,76 @@ class HomePage extends StatelessWidget {
                           )
                         ),
                       ),
-                      const Column(
-                        children: [
-                          Row(
-                              children: [
-                                SizedBox(width: 24,height: 35,),
-                                Text('Мастер Алина',
-                                style: TextStyle(
-                                  color: Color.fromARGB(250, 0, 0, 0),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  fontFamily: 'Be Vietnam pro',
-                                ),
-                                ),]),
-                          Row(
-                              children: [
-                                SizedBox(width: 22),
-                                Icon(Icons.location_on_outlined, color: Color.fromARGB(125, 0, 0, 0),),
-                                Text('улица Красный Путь',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(125, 0, 0, 0),
-                                    fontFamily:'Be Vietnam pro',
-                                    fontSize: 15,
+                        Row(
+                         children:[
+                           const Column(
+                            children: [
+                                Row(
+                                  children: [
+                                    SizedBox(width: 24,height: 35,),
+                                    Text('Мастер Алина',
+                                    style: TextStyle(
+                                      color: Color.fromARGB(250, 0, 0, 0),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      fontFamily: 'Be Vietnam pro',
                                     ),
-                                )
-                              ],)
+                                    ),
+                                  ]),
+                               Row(
+                                  children: [
+                                     SizedBox(width: 22),
+                                     Icon(Icons.location_on_outlined, color: Color.fromARGB(125, 0, 0, 0),),
+                                     Text('улица Красный Путь',
+                                      style: TextStyle(
+                                        color: Color.fromARGB(125, 0, 0, 0),
+                                        fontFamily:'Be Vietnam pro',
+                                        fontSize: 15,
+                                        ),
+                                    ),
+                                  ],),
                     ]
-                      )
+                      ),
+                           Positioned( // кнопка скама на бабки
+                               right: 0,
+                               bottom: 0,
+                               child: ElevatedButton(
+
+                                   style: ElevatedButton.styleFrom(
+                                     shape: const CircleBorder(),
+                                     elevation: 0,
+                                     backgroundColor: const Color.fromARGB(250, 252, 131, 210).withOpacity(0.0),
+                                     minimumSize: const Size(80,80),
+                                     side: const BorderSide(color: Colors.transparent),
+                                   ),
+                                   onPressed: widget.manicureMasterPressed,
+                                   child: const Icon(Icons.arrow_forward_sharp,
+                                     size: 40,
+                                     color: Color.fromARGB(250, 252, 131, 210),
+                                   ))
+                           )
                     ],
                   )
+                ]),
+                  )
+                  ])
                 ),
-                Positioned( // кнопка скама на бабки
-                    right: 0,
-                    bottom: 0,
-                    child: ElevatedButton(
-
-                        style: ElevatedButton.styleFrom(
-                          shape: const CircleBorder(),
-                          elevation: 0,
-                          backgroundColor: const Color.fromARGB(250, 252, 131, 210).withOpacity(0.0),
-                          minimumSize: const Size(80,80),
-                          side: const BorderSide(color: Colors.transparent),
-                        ),
-                        onPressed: manicureMasterPressed,
-                        child: const Icon(Icons.arrow_forward_sharp,
-                          size: 40,
-                          color: Color.fromARGB(250, 252, 131, 210),
-                        ))
-                )
-              ],
+              cardController: controller,
+              swipeUpdateCallback: (DragUpdateDetails details, Alignment align) {
+                if (align.x < 0) {
+                  // Card is LEFT swiping
+                } else if (align.x > 0) {
+                  // Card is RIGHT swiping
+                }
+              },
+              swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
+                print("Card $index swiped $orientation");
+              },
+            )
+           ),],
             ),
-          ),
 
-        ],
 
-      ),
       bottomNavigationBar: BottomNavigationBar( //нижняя навигация
         type: BottomNavigationBarType.fixed,
         iconSize: 35,

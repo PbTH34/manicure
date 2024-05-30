@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
@@ -52,7 +51,7 @@ class RegPage extends StatelessWidget {
                                         )
                                     ),
                                     Positioned(
-                                        right: 22,
+                                        right: 10,
                                         child: Text('SignUp',
                                             textAlign: TextAlign.center,
                                             style: Theme.of(context).textTheme.displayMedium?.copyWith(

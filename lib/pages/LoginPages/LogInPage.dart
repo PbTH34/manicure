@@ -1,9 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
-
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
 
 class LogInPage extends StatelessWidget {
   final VoidCallback regPressed;

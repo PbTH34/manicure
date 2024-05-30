@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
         ),
         '/Home': (context) => HomePage(
             manicureMasterPressed:(){
-
+              Navigator.pushNamed(context, '/LogIn');
             } ,
             notionsPressed:(){
 
