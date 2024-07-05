@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_tindercard_plus/flutter_tindercard_plus.dart';
 class HomePage extends StatefulWidget {
   final VoidCallback manicureMasterPressed;
   final VoidCallback notionsPressed;
@@ -57,7 +56,6 @@ class HomePage extends StatefulWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CardController controller = CardController();
     return Scaffold(
       resizeToAvoidBottomInset:false,
       body: Stack(
@@ -126,17 +124,6 @@ class HomePage extends StatefulWidget {
           ),
           ),
            Center(
-           child:  TinderSwapCard(
-              swipeUp: false,
-              swipeDown: false,
-              totalNum: data.length,
-              stackNum: 3,
-              swipeEdge: 4.0,
-              maxWidth: 299,
-              maxHeight: 495,
-              minWidth: 293,
-              minHeight: 488,
-              cardBuilder: (context, index) => Card(
                // анкеты маникюрщиц
                 child: Stack(
                 children: [
@@ -218,28 +205,17 @@ class HomePage extends StatefulWidget {
                                    child: const Icon(Icons.arrow_forward_sharp,
                                      size: 40,
                                      color: Color.fromARGB(250, 252, 131, 210),
-                                   ))
+                                   )
+                               )
                            )
-                    ],
+                         ],
+                        )
+                        ]),
                   )
-                ]),
-                  )
-                  ])
-                ),
-              cardController: controller,
-              swipeUpdateCallback: (DragUpdateDetails details, Alignment align) {
-                if (align.x < 0) {
-                  // Card is LEFT swiping
-                } else if (align.x > 0) {
-                  // Card is RIGHT swiping
-                }
-              },
-              swipeCompleteCallback: (CardSwipeOrientation orientation, int index) {
-                print("Card $index swiped $orientation");
-              },
-            )
-           ),],
-            ),
+                ])
+           ),
+        ]
+      ),
 
 
       bottomNavigationBar: BottomNavigationBar( //нижняя навигация
