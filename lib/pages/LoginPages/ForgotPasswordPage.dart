@@ -141,7 +141,7 @@ class ForgotPasswdPage extends StatelessWidget {
                                             const SizedBox(height: 25.0),
                                             Tooltip(
                                               key: tooltipKey,
-                                              message: 'Сейчас вам придет сообщение с вашим паролем от этого аккаунта(еблан)',
+                                              message: 'Сейчас вам придет сообщение с вашим паролем от этого аккаунта',
                                               preferBelow: true,
                                                decoration:  BoxDecoration(
                                                  color: const Color.fromARGB(250, 252, 131, 210).withOpacity(0.25),

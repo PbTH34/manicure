@@ -1,5 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:manicure/logic/Rest_API.dart';
+RandomMastersFirstEnterance master = RandomMastersFirstEnterance();
+
 class HomePage extends StatefulWidget {
   final VoidCallback manicureMasterPressed;
   final VoidCallback notionsPressed;
@@ -15,18 +18,17 @@ class HomePage extends StatefulWidget {
     required this.configPressed,
 
   });
+
   @override
   HomePageState createState() => HomePageState();
+
+
 }
   class HomePageState extends State<HomePage>
       with TickerProviderStateMixin {
-  double _opacity = 0.0;
-  double _topPosition = 40.0;
-  List<Map<String,String>> data =[
-    {"name": "Алина", "location": "улица Красный Путь", "image": "assets/images/master.jpg"},
-    {"name": "Алина", "location": "улица Красный Путь", "image": "assets/images/master.jpg"},
-    {"name": "Алина", "location": "улица Красный Путь", "image": "assets/images/master.jpg"}, //сделать чтобы данные брались из firebase
-  ];
+      double _opacity = 0.0;
+      double _topPosition = 40.0;
+
   @override
   void initState(){
     super.initState();
@@ -67,7 +69,7 @@ class HomePage extends StatefulWidget {
               child: Positioned( //черный задник
                 top: 0,
                 left: 0,
-                child: Container(  //блядская залупа кнопка убегает
+                child: Container(
                 decoration: const BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
@@ -93,11 +95,11 @@ class HomePage extends StatefulWidget {
                                 child: AnimatedOpacity(
                                   opacity: _opacity,
                                   duration: const Duration(seconds: 1),
-                                  child: const Text('Добро пожаловать, Дмитрий!',
+                                  child: const Text('Добро пожаловать, Дмитрий!',//${master.data[1]}
                                     softWrap: true,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
+                                    style:  TextStyle(
                                       fontFamily: 'Be Vietnam Pro',
                                       fontSize: 20,
                                       color: Colors.white,
@@ -107,7 +109,7 @@ class HomePage extends StatefulWidget {
                               )
                           ]),
                         ),
-                      ElevatedButton( //пидараска убегающая
+                      ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: const CircleBorder(),
                           elevation: 0,
@@ -189,7 +191,7 @@ class HomePage extends StatefulWidget {
                                   ],),
                     ]
                       ),
-                           Positioned( // кнопка скама на бабки
+                           Positioned( // кнопка записи
                                right: 0,
                                bottom: 0,
                                child: ElevatedButton(

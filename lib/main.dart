@@ -3,6 +3,7 @@ import 'package:manicure/pages/LoginPages/RegPage.dart';
 import 'package:manicure/pages/LoginPages/LogInPage.dart';
 import 'package:manicure/pages/LoginPages/ForgotPasswordPage.dart';
 import 'package:manicure/pages/HomePages/HomePage.dart';
+import 'package:manicure/logic/Rest_API.dart';
 void main() {
   runApp(const MyApp());
 
@@ -33,6 +34,8 @@ class MyApp extends StatelessWidget {
           Navigator.pushNamed(context, '/Forgot');
           },
           logInPressed:(){
+            RandomMastersFirstEnterance api = RandomMastersFirstEnterance();
+            api.fetchUsers();
             Navigator.pushNamed(context, '/Home');
           }
         ),
